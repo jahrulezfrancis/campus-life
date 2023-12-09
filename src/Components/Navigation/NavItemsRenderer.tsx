@@ -12,8 +12,7 @@ export default function NavItemsRenderer(props: NavItemProps) {
         <Stack direction={props.direction} >
             {navItems.map((item) => {
                 return (
-
-                    <NavLink to={item.path}>
+                    <NavLink key={item.id} to={item.path}>
                         <Button display={props.includeButton ? 'flex' : 'none'} alignItems="center" justifyContent="start" width={150} leftIcon={<Icon as={item.icon} />}>{item.title}</Button>
                         {!props.includeButton && item.title}
                     </NavLink>
