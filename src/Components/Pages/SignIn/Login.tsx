@@ -14,6 +14,8 @@ import {
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
+
+
 interface RegistrationValues {
     registrationNumber: string;
     password: string;
@@ -25,7 +27,7 @@ interface ValidationFunction {
     (value: string): string;
 }
 
-const Registration: React.FC = () => {
+export default function Login() {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState<RegistrationValues>({
         registrationNumber: '',
@@ -38,9 +40,9 @@ const Registration: React.FC = () => {
     const [errors, setErrors] = useState<Partial<RegistrationValues>>({});
     const toast = useToast();
 
-    const validateregistrationNumber: ValidationFunction = (value) => {
-        if (!value || value.length < 4) {
-            return 'registrationNumber must be at least 4 characters!';
+    const validateRegNumber: ValidationFunction = (value) => {
+        if (!value || value.length < 11 || value.length >= 12) {
+            return 'Reg number must be 11 characters long';
         }
         return '';
     };
@@ -60,6 +62,13 @@ const Registration: React.FC = () => {
         return '';
     };
 
+    const validateName: ValidationFunction = (value) => {
+        if (!value || value.length < 2) {
+            return 'Name must be at least 2 characters!';
+        }
+        return '';
+    };
+
     const handleSubmit = async () => {
         const newErrors: Partial<RegistrationValues> = {};
 
@@ -70,13 +79,16 @@ const Registration: React.FC = () => {
 
             switch (key) {
                 case 'registrationNumber':
-                    error = validateregistrationNumber(value);
+                    error = validateRegNumber(value);
                     break;
                 case 'password':
                     error = validatePassword(value);
                     break;
                 case 'email':
                     error = validateEmail(value);
+                    break;
+                case 'name':
+                    error = validateName(value);
                     break;
                 default:
                     break;
@@ -158,7 +170,7 @@ const Registration: React.FC = () => {
                         />
                         <FormErrorMessage>{errors.password}</FormErrorMessage>
                     </FormControl>
-                    <FormControl isInvalid={!!errors.email}>
+                    {/* <FormControl isInvalid={!!errors.email}>
                         <FormLabel>Email</FormLabel>
                         <Input
                             type="email"
@@ -168,86 +180,22 @@ const Registration: React.FC = () => {
                         />
                         <FormErrorMessage>{errors.email}</FormErrorMessage>
                     </FormControl>
+                    <FormControl isInvalid={!!errors.name}>
+                        <FormLabel>Name</FormLabel>
+                        <Input
+                            type="text"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                        />
+                        <FormErrorMessage>{errors.name}</FormErrorMessage>
+                    </FormControl> */}
                     <Button colorScheme="teal" isLoading={loading} onClick={handleSubmit}>
-                        Register
+                        Login
                     </Button>
-                    <Text textAlign="center">Already have an account? Click <NavLink style={{ fontWeight: "bold", color: "teal" }} to="/sign-in">here</NavLink> to sign in</Text>
+                    <Text textAlign="center">Don't have an account? Click <NavLink style={{ fontWeight: "bold", color: "teal" }} to="/sign-up">here</NavLink> to sign up</Text>
                 </Stack>
-
             </Box>
         </Center>
     );
-};
-
-export default Registration;
-
-
-
-
-
-
-
-
-
-// import { Box, Heading, FormControl, FormLabel, Input, Button, Alert, AlertIcon, useMediaQuery, Center, } from '@chakra-ui/react';
-// import { useState } from "react";
-
-// export default function SignUpPage() {
-//     const [mobileDevice] = useMediaQuery('(max-width: 650px)')
-//     const [password, setPassword] = useState("")
-//     const [registrationNumber, setRegistrationNumber] = useState("")
-//     const [error, setError] = useState("")
-
-//     function handleSubmit() {
-//         if (!registrationNumber.trim() || !password.trim()) {
-//             setError("Please fill out all fields.");
-//             return;
-//         }
-
-//         if (password.length < 6) {
-//             setError("Password must be at least 6 characters long.");
-//             return;
-//         }
-//     }
-
-//     return (
-//         <Box>
-//             <Center>
-//                 <Box boxShadow="2px 0px 16px 1px rgba(226,232,240,0.57)" w={!mobileDevice ? "600px" : "95vw"} m={6} p={6} borderRadius="lg">
-//                     <Heading as="h2" size="xl" mb={4}>
-//                         Registration
-//                     </Heading>
-//                     {error && (
-//                         <Alert status="error" mb={4}>
-//                             <AlertIcon />
-//                             {error}
-//                         </Alert>
-//                     )}
-//                     <FormControl id="registrationNumber" mb={4}>
-//                         <FormLabel>Registration Number</FormLabel>
-//                         <Input
-//                             type="text"
-//                             placeholder="Enter your registration number"
-//                             value={registrationNumber}
-//                             name='registrationNumber'
-//                             onChange={(e) => setRegistrationNumber(e.target.value)}
-//                         />
-//                     </FormControl>
-//                     <FormControl id="password" mb={6}>
-//                         <FormLabel>Password</FormLabel>
-//                         <Input
-//                             type="password"
-//                             name="password"
-//                             placeholder="Enter your password"
-//                             value={password}
-//                             onChange={(e) => setPassword(e.target.value)}
-//                         />
-//                     </FormControl>
-//                     <Button colorScheme="teal" onClick={handleSubmit}>
-//                         Register
-//                     </Button>
-//                 </Box>
-//             </Center>
-//         </Box>
-//     )
-// }
+}
