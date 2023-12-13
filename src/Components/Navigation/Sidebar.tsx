@@ -27,7 +27,7 @@ export default function SideBar() {
                     </DrawerHeader>
 
                     <DrawerBody>
-                        <NavItemsRenderer includeButton={true} direction="column" />
+                        <NavItemsRenderer onClick={onClose} includeButton={true} direction="column" />
                     </DrawerBody>
 
                     <DrawerFooter alignItems={"start"} justifyContent="start">
