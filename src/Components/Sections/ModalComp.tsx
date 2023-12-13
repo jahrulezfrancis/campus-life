@@ -3,19 +3,19 @@ import { ReactNode } from "react";
 import { Link, Path } from "react-router-dom";
 
 type ModalProps = {
-    buttonText: string;
     headerText: string;
     modalBody: ReactNode;
     footerButtonText: string;
     haslink: boolean;
-    link?: Path
+    link?: Path;
+    modalOpenButtonText: string;
 }
 
 export default function ModalComponent(props: ModalProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Box>
-            <Button onClick={onOpen}>Learn More</Button>
+            <Button onClick={onOpen}>{props.modalOpenButtonText}</Button>
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay backdropFilter="blur(4px) hue-rotate(10deg)" />
                 <ModalContent>
