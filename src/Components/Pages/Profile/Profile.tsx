@@ -16,8 +16,8 @@ export default function ProfilePage() {
     return (
         <Box margin={10}>
             <Center>
-                <Flex w="95vw" gap={10} p={6} borderWidth="1px" borderRadius="lg">
-                    <Image objectFit="cover" height="auto" width="200px" src={studentInfo.profileImage} alt={`${studentInfo.name} profile pictures`} />
+                <Flex wrap="wrap" w="95vw" gap={10} p={6} borderWidth="1px" borderRadius="lg">
+                    <Image objectPosition="top" objectFit="cover" height="400px" width="300px" src={studentInfo.profileImage} alt={`${studentInfo.name} profile pictures`} />
                     <Box >
                         <Heading as="h2" size="xl" mb={4}>
                             {studentInfo.name}
