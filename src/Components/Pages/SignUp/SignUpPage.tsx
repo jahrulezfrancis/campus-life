@@ -13,12 +13,13 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { BaseApiUrl } from '../../../utils/envKeys/keys';
+
+
 
 interface RegistrationValues {
-    registrationNumber: string;
-    password: string;
+    reg_number: string;
     email: string;
-    name: string;
 }
 
 interface ValidationFunction {
@@ -28,10 +29,8 @@ interface ValidationFunction {
 const Registration: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState<RegistrationValues>({
-        registrationNumber: '',
-        password: '',
+        reg_number: '',
         email: '',
-        name: '',
     });
     const [mobileDevice] = useMediaQuery('(max-width: 650px)')
 
@@ -45,12 +44,12 @@ const Registration: React.FC = () => {
         return '';
     };
 
-    const validatePassword: ValidationFunction = (value) => {
-        if (!value || value.length < 6) {
-            return 'Password must be at least 6 characters!';
-        }
-        return '';
-    };
+    // const validatePassword: ValidationFunction = (value) => {
+    //     if (!value || value.length < 6) {
+    //         return 'Password must be at least 6 characters!';
+    //     }
+    //     return '';
+    // };
 
     const validateEmail: ValidationFunction = (value) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,16 +63,13 @@ const Registration: React.FC = () => {
         const newErrors: Partial<RegistrationValues> = {};
 
         // Validate each field
-        Object.keys(values).forEach((key) => {
-            const value = values[key];
+        Object.entries(values).forEach(([key, value]: [string, any]) => {
+
             let error = '';
 
             switch (key) {
-                case 'registrationNumber':
+                case 'reg_number':
                     error = validateregistrationNumber(value);
-                    break;
-                case 'password':
-                    error = validatePassword(value);
                     break;
                 case 'email':
                     error = validateEmail(value);
@@ -96,17 +92,25 @@ const Registration: React.FC = () => {
         setLoading(true);
 
         try {
-            // Simulate an API request using Axios without async/await
-            const response = await axios.post('/api/register', values);
+            const response = await axios.post(
+                `${BaseApiUrl}auth-token/`,
+                {
+                    reg_number: values.reg_number,
+                    email: values.email,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+                }
+            );
 
-            // Assuming the server returns a token upon successful registration
             const { token } = response.data;
 
-            // Save the token to localStorage or a secure storage method
             localStorage.setItem('token', token);
 
-            // Handle the response
-            console.log('Registration successful', response.data);
+            console.log('Login successful', response.data);
 
             toast({
                 title: 'Registration successful',
@@ -114,12 +118,12 @@ const Registration: React.FC = () => {
                 duration: 3000,
             });
         } catch (error: unknown) {
-            // Handle the error
             console.error('Registration failed', error);
+            console.log("You just submitted" + values.reg_number + values.email)
 
             toast({
                 title: 'Registration failed',
-                description: error.message,
+                description: error instanceof Error && error.message,
                 status: 'error',
                 duration: 3000,
             });
@@ -138,28 +142,18 @@ const Registration: React.FC = () => {
         <Center>
             <Box>
                 <Stack boxShadow="2px 0px 16px 1px rgba(226,232,240,0.57)" w={!mobileDevice ? "600px" : "95vw"} m={6} p={6} borderRadius="lg" spacing={4}>
-                    <FormControl isInvalid={!!errors.registrationNumber}>
+                    <FormControl isInvalid={!!errors.reg_number}>
                         <FormLabel>Registration Number</FormLabel>
                         <Input
                             type="text"
-                            name="registrationNumber"
-                            value={values.registrationNumber}
+                            name="reg_number"
+                            value={values.reg_number}
                             onChange={handleChange}
                         />
-                        <FormErrorMessage>{errors.registrationNumber}</FormErrorMessage>
-                    </FormControl>
-                    <FormControl isInvalid={!!errors.password}>
-                        <FormLabel>Password</FormLabel>
-                        <Input
-                            type="password"
-                            name="password"
-                            value={values.password}
-                            onChange={handleChange}
-                        />
-                        <FormErrorMessage>{errors.password}</FormErrorMessage>
+                        <FormErrorMessage>{errors.reg_number}</FormErrorMessage>
                     </FormControl>
                     <FormControl isInvalid={!!errors.email}>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <Input
                             type="email"
                             name="email"
