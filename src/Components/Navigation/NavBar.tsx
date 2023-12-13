@@ -14,6 +14,7 @@ export default function Navbar() {
                     <SideBar />
                 </Box> : <NavLink to="/dashboard"><Heading fontSize='xl'>Campus Life</Heading></NavLink>}
                 <Spacer />
+                {!isMobile && <NavLink to={"/dashboard"}>Dashboard </NavLink>}
                 <NavItemsRenderer includeButton={false} direction="row" />
             </Flex>
         </Box>
