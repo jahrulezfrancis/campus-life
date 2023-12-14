@@ -10,12 +10,19 @@ export default function Navbar() {
     return (
         <Box alignContent="center" height={70} bg="gray.200" p={4}>
             <Flex h="100%" align="center">
-                {isMobile ? <Box>
-                    <SideBar />
-                </Box> : <NavLink to="/dashboard"><Heading fontSize='xl'>Campus Life</Heading></NavLink>}
+                {isMobile ?
+                    <Box>
+                        <SideBar />
+                    </Box>
+                    :
+                    <NavLink to="/dashboard"><Heading fontSize='xl'>Campus Life</Heading></NavLink>}
                 <Spacer />
-                {!isMobile && <NavLink to={"/dashboard"}>Dashboard </NavLink>}
-                <NavItemsRenderer includeButton={false} direction="row" />
+                {!isMobile &&
+                    <>
+                        <NavLink to={"/dashboard"}>Dashboard </NavLink>
+                        <NavItemsRenderer includeButton={false} direction="row" />
+                    </>
+                }
             </Flex>
         </Box>
     );
