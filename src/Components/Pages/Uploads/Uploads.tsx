@@ -1,9 +1,10 @@
 import { Box } from "@chakra-ui/react"
+import FileUploader from "../../Core/Helpers/FileUploader"
 
 export default function UploadsPage() {
     return (
         <Box>
-            You have not uplodeded any file yet
+         <FileUploader />
         </Box>
     )
 }
