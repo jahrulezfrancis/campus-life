@@ -4,7 +4,7 @@ import { primaryColor } from "../../Core/Colors/colors"
 import Carousel from "../../Sections/Slider/Carousel"
 
 export default function UploadsPage() {
-    const fileLength = 0
+    const fileLength = 1
     return (
         <Box>
             <section>
