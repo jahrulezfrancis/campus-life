@@ -1,20 +1,21 @@
 import { Box, HStack, Heading } from "@chakra-ui/react";
 import UnverifiedMessage from "../../Sections/Unverified";
-import PhotoHighlightCard from "../../Sections/Cards/ImageHighlight";
-import SocialMediaCard from "../../Sections/Cards/SocialCardComp";
-import SchoolCalendar from "../../Sections/Cards/SchoolCalender";
+import CardRenderers from "../../Sections/Cards/Renderers";
+import HighlightCarousel from "../../Sections/Slider/Carousel";
+
 
 export default function Dashboard() {
-    const isVerified = false
+    const isVerified = true
     return (
         <Box padding={5} height="300px">
             <Heading>Hi Isa'ac</Heading>
+            <section>
+                <HighlightCarousel />
+            </section>
             {!isVerified && <UnverifiedMessage />}
             <section>
                 <HStack align="center" justify="center" p={5} gap={10} wrap="wrap">
-                    <PhotoHighlightCard />
-                    <SocialMediaCard />
-                    <SchoolCalendar />
+                    <CardRenderers />
                 </HStack>
             </section>
         </Box>
