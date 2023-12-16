@@ -9,9 +9,9 @@ export default function CardRenderers() {
             <Flex justify="center" gap={10} wrap="wrap">
                 {yearlyData.map((item) => {
                     return (
-                        <PreviewCardLayout bgImage="" cardLabel={item.title} children={
+                        <PreviewCardLayout bgImage={item.cardImage} cardLabel={item.title} children={
                             <>
-                                <Text>{item.description}</Text>
+                                <Text color="whitesmoke">{item.description}</Text>
                                 <Button>Explore {item.title} highlights</Button>
                             </>
                         } />
