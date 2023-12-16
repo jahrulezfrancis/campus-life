@@ -1,4 +1,4 @@
-import { Flex, Stack, Image, Button, Icon, Box, useToast, Modal, ModalBody, ModalCloseButton, ModalFooter, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Spacer, } from "@chakra-ui/react";
+import { Flex, Stack, Image, Button, Icon, Box, Tooltip, useToast, Modal, ModalBody, ModalCloseButton, ModalFooter, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Spacer, Heading, } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { RiImageAddLine } from "react-icons/ri";
@@ -6,9 +6,9 @@ import { RiImageAddLine } from "react-icons/ri";
 
 
 
-
 export default function FileUploader() {
     const { onClose, onOpen, isOpen } = useDisclosure()
+
     const [isloading, setIsloading] = useState(false)
     const [uploadedImages, setUploadedImages] = useState<string[]>([]);
     const toast = useToast()
@@ -21,7 +21,7 @@ export default function FileUploader() {
             }, 5000)
             setTimeout(() => {
                 onClose()
-                setUploadedImages([])
+                // setUploadedImages([])
                 setIsloading(false)
             }, 7000)
         })
@@ -65,7 +65,30 @@ export default function FileUploader() {
     function Component() {
         return (
             <Box>
-                <Button onClick={onOpen}>Add new photos</Button>
+                <Stack justify="center" align="center">
+                    {uploadedImages.length > 0 &&
+                        <Box>
+                            <Heading textAlign="center" mb={10} as="h3">Recent Uploads</Heading>
+                            <Flex justify="center" wrap="wrap" gap={3}>
+                                {uploadedImages.map((image, index) => (
+                                    <Flex position="relative" key={index} direction="column" justify="center" align="center">
+                                        <Image
+                                            objectFit="cover"
+                                            src={image}
+                                            alt={`uploaded-${index}`}
+                                            style={{ maxWidth: '150px', maxHeight: '200px' }}
+                                        />
+                                        <Tooltip fontSize={20} aria-label="Nasi" label="Delete Image">
+                                            <Icon _hover={{ cursor: "pointer" }} fontSize={30} onClick={() => handleRemoveImage(index)} position="absolute" color="red" as={MdDeleteForever} />
+                                        </Tooltip>
+                                    </Flex>
+                                ))}
+                            </Flex>
+                        </Box>
+
+                    }
+                    <Button width={200} textAlign="center" onClick={onOpen}>Add new photos</Button>
+                </Stack>
                 <Modal closeOnOverlayClick={false} isCentered isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay backdropFilter="blur(4px) hue-rotate(10deg)" />
                     <ModalContent>
