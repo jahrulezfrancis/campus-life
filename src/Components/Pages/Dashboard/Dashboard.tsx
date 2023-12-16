@@ -1,14 +1,14 @@
-import { Box, HStack, Heading } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import UnverifiedMessage from "../../Sections/Unverified";
-import CardRenderers from "../../Sections/Cards/Renderers";
+import CardRenderers from "../../Sections/Cards/CardRenderers";
 import HighlightCarousel from "../../Sections/Slider/Carousel";
 
 
 export default function Dashboard() {
     const isVerified = true
     return (
-        <Box padding={5} height="300px">
-            <Heading>Hi Isa'ac</Heading>
+        <Box padding={0} height="300px">
+            {/* <Heading>Hi Isa'ac</Heading> */}
             <section>
                 <HighlightCarousel />
             </section>
