@@ -19,8 +19,7 @@ export default function Navbar() {
                 <Spacer />
                 {!isMobile &&
                     <>
-                        <NavLink to={"/dashboard"}>Dashboard </NavLink>
-                        <NavItemsRenderer includeButton={false} direction="row" />
+                        <NavItemsRenderer includeButton={true} direction="row" />
                     </>
                 }
             </Flex>
