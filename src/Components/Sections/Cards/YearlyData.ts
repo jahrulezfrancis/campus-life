@@ -1,7 +1,13 @@
+import yearOnePic from "../../../assets/celebrating-lady.jpg"
+import yearTwopic from "../../../assets/graduating-lady.jpg"
+import yearthreePic from "../../../assets/graduating-students-stairs.jpg"
+import yearFourPic from "../../../assets/student-in-lab.jpg"
+import finalYearPic from "../../../assets/student2.jpeg"
+
 export const yearlyData = [
-    { id: 1, title: "Year one", description: "View year one hiighlight", buttonLabel: "Explore Year one" },
-    { id: 2, title: "Year Two", description: "View year two highlights", buttonLabel: "Explore Year two" },
-    { id: 3, title: "Year Three", description: "View year three highlights", buttonLabel: "Explore year three" },
-    { id: 2, title: "Year four", description: "View year four highlights", buttonLabel: "Explore Year four" },
-    { id: 2, title: "Year five", description: "View year five highlights", buttonLabel: "Explore Year five" },
+    { id: 1, title: "Year one", description: "Check out your collections from year one", buttonLabel: "Explore Year one", cardImage: yearOnePic },
+    { id: 2, title: "Year Two", description: "Check out your collections from year two", buttonLabel: "Explore Year two", cardImage: yearTwopic },
+    { id: 3, title: "Year Three", description: "Checkout your highlights from year three", buttonLabel: "Explore year three", cardImage: yearthreePic },
+    { id: 2, title: "Year four", description: "Checkout your highlights from year four", buttonLabel: "Explore Year four", cardImage: yearFourPic },
+    { id: 2, title: "Year five", description: "Checkout your highlights from year five", buttonLabel: "Explore Year five", cardImage: finalYearPic },
 ]
