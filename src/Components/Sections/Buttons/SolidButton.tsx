@@ -9,7 +9,7 @@ interface ButtonProps {
 export default function SolidButton(props: ButtonProps) {
     return (
         <Box>
-            <Button onClick={props.onClick} borderRadius={10} height="50px" width="150px" colorScheme="teal">{props.buttonText}</Button>
+            <Button onClick={props.onClick} borderRadius={10} height="50px" width="200px" colorScheme="teal">{props.buttonText}</Button>
         </Box>
     )
 }
