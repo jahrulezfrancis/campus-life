@@ -15,7 +15,7 @@ export default function Navbar() {
                         <SideBar />
                     </Box>
                     :
-                    <NavLink to="/dashboard"><Heading fontSize='xl'>Campus Life</Heading></NavLink>}
+                    <NavLink to="/"><Heading fontSize='xl'>Campus Life</Heading></NavLink>}
                 <Spacer />
                 {!isMobile &&
                     <>
