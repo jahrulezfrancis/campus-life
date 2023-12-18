@@ -4,8 +4,16 @@ import AboutSection from "./AboutSection";
 import BackgroundImage from "../../../assets/graduating-students.jpg"
 import HandWithBook from "../../../assets/hands-holding-book.png"
 import RoundedBorderImage from "../../../assets/male-image-with-radius.png"
+import IliasImage from "../../../assets/usman.jpg";
+import JblinksImage from "../../../assets/isaac-jblinks.jpg";
+import GraduantImage from "../../../assets/student-with-prof.jpg";
+import AdocheImage from "../../../assets/adoche.png";
+import AtbuGraduants from "../../../assets/graduating-students-atbu.jpg";
+
 import SolidButton from "../../Sections/Buttons/SolidButton";
 import { PiArrowBendDownRightBold } from "react-icons/pi";
+import UserCard from "../../Sections/Cards/UserCard";
+import TestimonialCard from "../../Sections/Cards/TestimonialCard";
 
 
 export default function HomePage() {
@@ -61,6 +69,25 @@ export default function HomePage() {
                         </Box>
                     </Flex>
                 </Box>
+            </section>
+            <section>
+                <Box p={isMobile ? "20px 5px" : "50px 10px"} bg="#F6F6F6">
+                    <Heading textAlign="center">Meet Our Users</Heading>
+                    <Box padding={"30px 0px 40px 0px"}>
+                        <Divider />
+                    </Box>
+                    <Stack gap={20}>
+                        <UserCard userImage={IliasImage} userName="Ilias" aboutUser="Hi!, I am a diligent senior software engineer with years of experience in product development and  business applications. I'm a studnet of ATBU BAUCHI. I am skilled in developing plans, managing projects, and user documentation." />
+                        <UserCard userImage={AdocheImage} userName="Adoche" aboutUser="I'm a studnet of UNI LAG. I am skilled in developing plans, managing projects, and user documentation." />
+                        <UserCard userImage={JblinksImage} userName="Isaac" aboutUser="I'm a studnet of UNN. I am skilled in developing plans, managing projects, and user documentation." />
+                    </Stack>
+                </Box>
+            </section>
+            <section>
+                <Stack align="center">
+                    <TestimonialCard placement="left" bgColor="base" clientName="Arron Simon" clientImage={GraduantImage} message="I am glad to have studied at Abubakar Tafawa Balewa University Bauchi with many years of intellectual and moral discipline aquired." clientSector="DEPARTMENT OF MECHATRONIC & SYSTEM ENGINEERING" />
+                    <TestimonialCard placement="right" bgColor="ash" clientName="Students" clientImage={AtbuGraduants} message="We are all glad to have worked with with amazingly intelligent and kind lecturerers that can balance multiple responsibilities at once. Any organization would be lucky to have them" />
+                </Stack>
             </section>
         </Box>
     )
