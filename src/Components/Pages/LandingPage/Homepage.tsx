@@ -1,8 +1,11 @@
-import { Box, Heading, Flex, Text, Stack, useMediaQuery, } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text, Stack, useMediaQuery, Divider, Image, Icon, } from "@chakra-ui/react";
 import LandingPageHeader from "./Header";
 import AboutSection from "./AboutSection";
 import BackgroundImage from "../../../assets/graduating-students.jpg"
+import HandWithBook from "../../../assets/hands-holding-book.png"
+import RoundedBorderImage from "../../../assets/male-image-with-radius.png"
 import SolidButton from "../../Sections/Buttons/SolidButton";
+import { PiArrowBendDownRightBold } from "react-icons/pi";
 
 
 export default function HomePage() {
@@ -25,12 +28,38 @@ export default function HomePage() {
                 <AboutSection />
             </section>
             <section>
-                <Box color="whitesmoke" bg="#000000" h={"700px"}>
-                    <Stack>
-                        <Text width={isMobile ? "300px" : "400px"} fontSize={isMobile ? 50 : 100}>Who is campuslife for</Text>
-                        <Text fontSize={40}>Students</Text>
-                        <Text fontSize={30}>Students looking out to connect and have a record of their experiences</Text>
+                <Box color="whitesmoke" bg="#000000" minH="600px" padding={10}>
+                    <Stack align="center" justify="center" wrap="wrap" >
+                        <Flex wrap="wrap" justify="space-around">
+                            <Stack maxW="95vw" w={"400px"}>
+                                <Text width={isMobile ? "300px" : "400px"} fontSize={isMobile ? 50 : 100}>Who is campuslife for</Text>
+                                <Text fontSize={40}>Students</Text>
+                                <Text fontSize={30}>Students looking out to connect and have a record of their experiences</Text>
+                            </Stack>
+                            <Image objectFit="cover" maxW="90vw" w={400} src={RoundedBorderImage} />
+                        </Flex>
+                        <Flex width="100%" align="center" justify="space-around" wrap="wrap" >
+                            <Divider border="2px solid white" width={160} />
+                            <Flex gap="10">
+                                <Icon fontSize={30} as={PiArrowBendDownRightBold} />
+                                <Text>Connect with me today</Text>
+                            </Flex>
+                        </Flex>
                     </Stack>
+                </Box>
+            </section>
+            <section>
+                <Box>
+                    <Flex wrap="wrap" height="auto" minH={750} justify="space-evenly" align="center">
+                        <Stack gap={10}>
+                            <Text fontSize="40px">Educationist</Text>
+                            <Heading fontWeight="700" w="450px" maxW="90vw">Lecturers building their portfolio and connecting with other institutions.</Heading>
+                            <Divider width={150} border="2px solid black" />
+                        </Stack>
+                        <Box>
+                            <Image objectFit="cover" h="auto" width="400px" maxW="90vw" src={HandWithBook} />
+                        </Box>
+                    </Flex>
                 </Box>
             </section>
         </Box>
