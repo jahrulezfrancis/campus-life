@@ -92,8 +92,10 @@ export default function HomePage() {
                 </Stack>
             </section>
             <section>
-                <Box>
-                    <Heading>Contact</Heading>
+                <Box color="white" bg="#142140" minH={700}>
+                    <Stack align="center" justify="start" height="140px" width="490px" backgroundColor="#071332">
+                        <Heading fontSize="70px">Contact</Heading>
+                    </Stack>
                 </Box>
             </section>
             <footer>
