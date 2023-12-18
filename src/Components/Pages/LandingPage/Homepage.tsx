@@ -91,6 +91,11 @@ export default function HomePage() {
                     <TestimonialCard placement="right" bgColor="ash" clientName="Students" clientImage={AtbuGraduants} message="We are all glad to have worked with with amazingly intelligent and kind lecturerers that can balance multiple responsibilities at once. Any organization would be lucky to have them" />
                 </Stack>
             </section>
+            <section>
+                <Box>
+                    <Heading>Contact</Heading>
+                </Box>
+            </section>
             <footer>
                 <Flex color="white" bg="black" padding={8} justify="space-between">
                     <Text>Startup Bauchi Copyright © 2023</Text>
