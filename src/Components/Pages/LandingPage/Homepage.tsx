@@ -14,6 +14,8 @@ import SolidButton from "../../Sections/Buttons/SolidButton";
 import { PiArrowBendDownRightBold } from "react-icons/pi";
 import UserCard from "../../Sections/Cards/UserCard";
 import TestimonialCard from "../../Sections/Cards/TestimonialCard";
+import { SocialLinks } from "./SocialLinks";
+import { Link } from "react-router-dom";
 
 
 export default function HomePage() {
@@ -89,6 +91,21 @@ export default function HomePage() {
                     <TestimonialCard placement="right" bgColor="ash" clientName="Students" clientImage={AtbuGraduants} message="We are all glad to have worked with with amazingly intelligent and kind lecturerers that can balance multiple responsibilities at once. Any organization would be lucky to have them" />
                 </Stack>
             </section>
+            <footer>
+                <Flex color="white" bg="black" padding={8} justify="space-between">
+                    <Text>Startup Bauchi Copyright © 2023</Text>
+                    <Flex align="center" justify="center" gap={5} wrap="wrap">
+                        {SocialLinks.map((item) => {
+                            return (
+                                <Link key={item.id} to={item.link}>
+                                    <Icon fontSize={25} as={item.Icon} />
+                                </Link>
+                            )
+                        })}
+                    </Flex>
+                    <Text>Terms & Support</Text>
+                </Flex>
+            </footer>
         </Box>
     )
 }
