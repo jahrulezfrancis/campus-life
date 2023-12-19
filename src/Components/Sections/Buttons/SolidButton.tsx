@@ -3,7 +3,6 @@ import { Box, Button } from "@chakra-ui/react";
 interface ButtonProps {
     buttonText: string;
     onClick?: () => void;
-
 }
 
 export default function SolidButton(props: ButtonProps) {
