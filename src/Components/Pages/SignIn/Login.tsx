@@ -29,6 +29,7 @@ interface ValidationFunction {
 export default function Login() {
 
     const [loading, setLoading] = useState(false);
+    const [csrftoken, setToken] = useState("");
 
     const [values, setValues] = useState<RegistrationValues>({
         username: '',
@@ -59,6 +60,7 @@ export default function Login() {
         const newErrors: Partial<RegistrationValues> = {};
 
         // Validate each field
+        //@ts-ignore
         Object.entries(values).forEach(([key, value]: [string, any]) => {
             let error: string = '';
 
@@ -83,12 +85,37 @@ export default function Login() {
             setErrors(newErrors);
             return;
         }
+        fetch('https://campus-life-961c225b9b16.herokuapp.com/api/v1/student/get-csrf-token/', {
+            method: 'GET',
+            credentials: 'include',  // Include cookies in the request
+        })
+            .then(response => response.json())
+            .then(data => {
+                const csrfToken = data.csrf_token;
+                setToken(csrfToken)
+                console.log(csrfToken)
+                // Now you can use the csrfToken in your requests
+            })
+            .catch(error => console.error('Error fetching CSRF token:', error));
+        setLoading(true);
 
+        fetch(`${BaseApiUrl}auth-token/`, {
+            method: 'post',
+            credentials: 'include',  // Include cookies in the request
+        })
+            .then(response => response.json())
+            .then(data => {
+                const csrfToken = data.csrf_token;
+                setToken(csrfToken)
+                console.log(csrfToken)
+                // Now you can use the csrfToken in your requests
+            })
+            .catch(error => console.error('Error fetching CSRF token:', error));
         setLoading(true);
 
         try {
             const response = await axios.post(
-                `${BaseApiUrl}auth-token/`,
+                `${BaseApiUrl}api/v1/student/custom-auth-token`,
                 {
                     username: values.username,
                     password: values.password,
@@ -96,6 +123,7 @@ export default function Login() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
                     },
                     withCredentials: true,
                 }
