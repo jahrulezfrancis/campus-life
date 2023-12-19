@@ -2,6 +2,7 @@ import { Box, HStack, Heading, Spacer, Stack } from "@chakra-ui/react";
 import SolidButton from "../../Sections/Buttons/SolidButton";
 // import HeaderImage from "../../../assets/thirrdStudent.jpg"
 import BackgroundImage from "../../../assets/graduating-students-atbu.jpg"
+import { Link } from "react-router-dom";
 
 export default function LandingPageHeader() {
     return (
@@ -16,8 +17,12 @@ export default function LandingPageHeader() {
                     <Heading fontSize={22}>Building a future</Heading>
                     <Spacer mb={50} height={50} />
                     <HStack justify="center" gap={10} wrap="wrap">
-                        <SolidButton buttonText="Sign in" />
-                        <SolidButton buttonText="Sign up" />
+                        <Link to="/sign-in">
+                            <SolidButton buttonText="Sign in" />
+                        </Link>
+                        <Link to="/sign-up">
+                            <SolidButton buttonText="Sign up" />
+                        </Link>
                     </HStack>
                 </Stack>
             </HStack>
