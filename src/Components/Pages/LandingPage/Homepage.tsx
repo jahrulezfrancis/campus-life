@@ -31,7 +31,9 @@ export default function HomePage() {
                             <Heading fontWeight="500">The road map to a life <br /> long connected Alumni.</Heading>
                             <Heading textTransform="capitalize">It begins <strong>here___</strong></Heading>
                         </Stack>
-                        <SolidButton buttonText="Sign up today" />
+                        <Link to="/sign-up">
+                            <SolidButton buttonText="Sign up today" />
+                        </Link>
                     </Flex>
                 </Box>
             </section>
