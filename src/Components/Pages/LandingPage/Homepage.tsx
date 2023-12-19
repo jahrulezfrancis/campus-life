@@ -9,6 +9,7 @@ import JblinksImage from "../../../assets/isaac-jblinks.jpg";
 import GraduantImage from "../../../assets/student-with-prof.jpg";
 import AdocheImage from "../../../assets/adoche.png";
 import AtbuGraduants from "../../../assets/graduating-students-atbu.jpg";
+import CurvyArc from "../../../assets/curvy-arc.svg";
 
 import SolidButton from "../../Sections/Buttons/SolidButton";
 import { PiArrowBendDownRightBold } from "react-icons/pi";
@@ -92,15 +93,42 @@ export default function HomePage() {
                 </Stack>
             </section>
             <section>
-                <Box color="white" bg="#142140" minH={700}>
-                    <Stack align="center" justify="start" height="140px" width="490px" backgroundColor="#071332">
-                        <Heading fontSize="70px">Contact</Heading>
-                    </Stack>
+                <Box bg="#142140" height="700px" minH={"700px"}>
+                    <Flex wrap="wrap" height="100%" align="center" justify="space-around">
+                        <Stack wrap="wrap" width="450px" bg="black" gap={1}>
+                            <Stack align="start" justify="center" padding={10} height="140px" backgroundColor="#071332">
+                                <Heading color="#57E4FF" fontSize="70px">Contact</Heading>
+                            </Stack>
+                            <Stack color="black" align="start" justify="center" padding={10} height="140px" backgroundColor="#FFFFFF">
+                                <Heading fontSize="24px">Contact</Heading>
+                                <Text fontSize="20px">(234) 806-7890-938</Text>
+                            </Stack>
+                            <Stack align="start" justify="center" padding={10} height="140px" backgroundColor="#FFFFFF">
+                                <Heading fontSize="24px">Email</Heading>
+                                <Text fontSize="20px">hello@secureng.com</Text>
+                            </Stack>
+                            <Stack direction={isMobile ? "column" : "row"} align="center" justify="space-between" padding={10} height="140px" width="100%" backgroundColor="#57E4FF">
+                                <Heading textTransform="uppercase" fontSize="24px">Secure NG</Heading>
+                                <Flex align="center" justify="center" gap={5} wrap="wrap">
+                                    {SocialLinks.map((item) => {
+                                        return (
+                                            <Link key={item.id} to={item.link}>
+                                                <Icon fontSize={25} as={item.Icon} />
+                                            </Link>
+                                        )
+                                    })}
+                                </Flex>
+                            </Stack>
+                        </Stack>
+                        <Box>
+                            <Image alt="about-section" src={CurvyArc} />
+                        </Box>
+                    </Flex>
                 </Box>
             </section>
             <footer>
                 <Flex color="white" bg="black" padding={8} justify="space-between">
-                    <Text>Startup Bauchi Copyright © 2023</Text>
+                    <Text>© Powered by Startup Bauchi</Text>
                     <Flex align="center" justify="center" gap={5} wrap="wrap">
                         {SocialLinks.map((item) => {
                             return (
