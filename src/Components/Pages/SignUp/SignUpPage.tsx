@@ -88,9 +88,8 @@ const Registration: React.FC = () => {
             return;
         }
 
-        setLoading(true);
-
         const examplePromise = new Promise((resolve) => {
+            setLoading(true)
             setTimeout(() => {
                 // setLoading(true)
                 resolve(200)

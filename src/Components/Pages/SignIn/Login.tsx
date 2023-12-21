@@ -57,7 +57,6 @@ export default function Login() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         const newErrors: Partial<RegistrationValues> = {};
-        setLoading(true)
         // Validate each field
         Object.entries(values).forEach(([key, value]: [string, string]) => {
             let error: string = '';
@@ -83,6 +82,7 @@ export default function Login() {
             return;
         }
         const examplePromise = new Promise((resolve) => {
+            setLoading(true)
             setTimeout(() => {
                 // setLoading(true)
                 resolve(200)
