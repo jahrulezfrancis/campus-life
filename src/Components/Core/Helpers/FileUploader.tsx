@@ -14,7 +14,7 @@ export default function FileUploader() {
     const toast = useToast()
 
     function handleImageUpload() {
-        const examplePromise = new Promise((resolve, reject) => {
+        const examplePromise = new Promise((resolve) => {
             setTimeout(() => {
                 setIsloading(true)
                 resolve(200)
