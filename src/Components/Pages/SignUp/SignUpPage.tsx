@@ -11,9 +11,7 @@ import {
     useMediaQuery,
     Center, Text
 } from '@chakra-ui/react';
-import axios from 'axios';
-import { NavLink } from 'react-router-dom';
-import { BaseApiUrl } from '../../../utils/envKeys/keys';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 
@@ -27,6 +25,7 @@ interface ValidationFunction {
 }
 
 const Registration: React.FC = () => {
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState<RegistrationValues>({
         reg_number: '',
@@ -38,8 +37,8 @@ const Registration: React.FC = () => {
     const toast = useToast();
 
     const validateregistrationNumber: ValidationFunction = (value) => {
-        if (!value || value.length < 4) {
-            return 'registrationNumber must be at least 4 characters!';
+        if (value.length !== 11) {
+            return 'registration number must be at least 11 characters!';
         }
         return '';
     };
@@ -63,7 +62,7 @@ const Registration: React.FC = () => {
         const newErrors: Partial<RegistrationValues> = {};
 
         // Validate each field
-        Object.entries(values).forEach(([key, value]: [string, any]) => {
+        Object.entries(values).forEach(([key, value]: [string, string]) => {
 
             let error = '';
 
@@ -91,45 +90,21 @@ const Registration: React.FC = () => {
 
         setLoading(true);
 
-        try {
-            const response = await axios.post(
-                `${BaseApiUrl}auth-token/`,
-                {
-                    reg_number: values.reg_number,
-                    email: values.email,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true,
-                }
-            );
-
-            const { token } = response.data;
-
-            localStorage.setItem('token', token);
-
-            console.log('Login successful', response.data);
-
-            toast({
-                title: 'Registration successful',
-                status: 'success',
-                duration: 3000,
-            });
-        } catch (error: unknown) {
-            console.error('Registration failed', error);
-            console.log("You just submitted" + values.reg_number + values.email)
-
-            toast({
-                title: 'Registration failed',
-                description: error instanceof Error && error.message,
-                status: 'error',
-                duration: 3000,
-            });
-        } finally {
-            setLoading(false);
-        }
+        const examplePromise = new Promise((resolve) => {
+            setTimeout(() => {
+                // setLoading(true)
+                resolve(200)
+            }, 5000)
+            setTimeout(() => {
+                setLoading(false)
+                navigate('/dashboard')
+            }, 6000)
+        })
+        toast.promise(examplePromise, {
+            success: { position: "top", duration: 1000, title: 'Registration Successful.', description: "Redirecting..." },
+            error: { title: 'Upload failed', duration: 1000, description: 'Image upload failed, please try again' },
+            loading: { title: "Validating data", description: "" },
+        })
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
