@@ -14,7 +14,7 @@ import Image9 from "../../../assets/student2.jpeg"
 
 export default function HighlightCarousel() {
     return (
-        <Carousel swipeable stopOnHover infiniteLoop width="100%" autoPlay>
+        <Carousel stopOnHover infiniteLoop width="100%" autoPlay>
             <Box>
                 <Image objectFit="cover" h="600px" src={Image1} />
                 {/* <p className="legend">Memories from year one</p> */}
