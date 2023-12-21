@@ -11,9 +11,9 @@ import {
     useMediaQuery,
     Center, Text
 } from '@chakra-ui/react';
-import axios from 'axios';
-import { NavLink, redirect } from 'react-router-dom';
-import { BaseApiUrl } from '../../../utils/envKeys/keys';
+// import axios from 'axios';
+import { NavLink, useNavigate } from 'react-router-dom';
+// import { BaseApiUrl } from '../../../utils/envKeys/keys';
 
 
 
@@ -29,8 +29,7 @@ interface ValidationFunction {
 export default function Login() {
 
     const [loading, setLoading] = useState(false);
-    const [csrftoken, setToken] = useState("");
-
+    const navigate = useNavigate()
     const [values, setValues] = useState<RegistrationValues>({
         username: '',
         password: '',
@@ -58,10 +57,9 @@ export default function Login() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         const newErrors: Partial<RegistrationValues> = {};
-
+        setLoading(true)
         // Validate each field
-        //@ts-ignore
-        Object.entries(values).forEach(([key, value]: [string, any]) => {
+        Object.entries(values).forEach(([key, value]: [string, string]) => {
             let error: string = '';
 
             switch (key) {
@@ -80,82 +78,28 @@ export default function Login() {
             }
         });
 
-        // If there are validation errors, set the errors and stop form submission
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
-        fetch('https://campus-life-961c225b9b16.herokuapp.com/api/v1/student/get-csrf-token/', {
-            method: 'GET',
-            credentials: 'include',  // Include cookies in the request
+        const examplePromise = new Promise((resolve) => {
+            setTimeout(() => {
+                // setLoading(true)
+                resolve(200)
+            }, 5000)
+            setTimeout(() => {
+                setLoading(false)
+                navigate('/dashboard')
+            }, 6000)
         })
-            .then(response => response.json())
-            .then(data => {
-                const csrfToken = data.csrf_token;
-                setToken(csrfToken)
-                console.log(csrfToken)
-                // Now you can use the csrfToken in your requests
-            })
-            .catch(error => console.error('Error fetching CSRF token:', error));
-        setLoading(true);
-
-        fetch(`${BaseApiUrl}auth-token/`, {
-            method: 'post',
-            credentials: 'include',  // Include cookies in the request
+        toast.promise(examplePromise, {
+            success: { position: "top", duration: 1000, title: 'Login Successful.', description: "Redirecting..." },
+            error: { title: 'Upload failed', duration: 1000, description: 'Image upload failed, please try again' },
+            loading: { title: "Validating login", description: "" },
         })
-            .then(response => response.json())
-            .then(data => {
-                const csrfToken = data.csrf_token;
-                setToken(csrfToken)
-                console.log(csrfToken)
-                // Now you can use the csrfToken in your requests
-            })
-            .catch(error => console.error('Error fetching CSRF token:', error));
-        setLoading(true);
+    }
 
-        try {
-            const response = await axios.post(
-                `${BaseApiUrl}api/v1/student/custom-auth-token`,
-                {
-                    username: values.username,
-                    password: values.password,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken,
-                    },
-                    withCredentials: true,
-                }
-            );
 
-            const { token } = response.data;
-
-            localStorage.setItem('token', token);
-
-            console.log('Login successful', response.data);
-
-            toast({
-                title: 'Login successful',
-                status: 'success',
-                duration: 3000,
-            });
-            redirect('/dashboard')
-        } catch (error: unknown) {
-            // Handle the error
-            console.error('Login failed', error);
-
-            toast({
-                title: 'Registration failed',
-                description: error instanceof Error && error.message === "Network Error" && "Internal Server error",
-                status: 'error',
-                duration: 3000,
-            });
-        } finally {
-            setLoading(false);
-
-        }
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
