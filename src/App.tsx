@@ -18,6 +18,11 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/my-uploads' element={<UploadsPage />} />
+        <Route path='/year-one' element={<UploadsPage />} />
+        <Route path='/year-two' element={<UploadsPage />} />
+        <Route path='/year-three' element={<UploadsPage />} />
+        <Route path='/year-four' element={<UploadsPage />} />
+        <Route path='/final-year' element={<UploadsPage />} />
         <Route path='/sign-up' element={<Registration />} />
         <Route path='/sign-in' element={<Login />} />
       </Routes>
