@@ -145,7 +145,7 @@ export default function Login() {
             console.error('Login failed', error);
 
             toast({
-                title: 'Registration failed',
+                title: 'Login Failed',
                 description: error instanceof Error && error.message === "Network Error" && "Internal Server error",
                 status: 'error',
                 duration: 3000,
