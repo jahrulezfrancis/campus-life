@@ -114,7 +114,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                `${BaseApiUrl}api/v1/student/custom-auth-token`,
+                `${BaseApiUrl}auth-token/`,
                 {
                     username: values.username,
                     password: values.password,
