@@ -8,9 +8,10 @@ export default function Dashboard() {
     const isVerified = true
     return (
         <Box padding={0} height="300px">
-            {/* <Heading>Hi Isa'ac</Heading> */}
             <section>
-                <HighlightCarousel />
+                <Box padding={0}>
+                    <HighlightCarousel />
+                </Box>
             </section>
             {!isVerified && <UnverifiedMessage />}
             <section>
