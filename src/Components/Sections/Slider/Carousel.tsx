@@ -18,39 +18,33 @@ export default function HighlightCarousel() {
             <Carousel stopOnHover infiniteLoop width="100%" autoPlay>
                 <Box >
                     <Image objectFit="cover" h="600px" src={Image1} />
-                    {/* <p className="legend">Memories from year one</p> */}
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image2} />
-                    {/* <p className="legend">Memories from year one</p> */}
                 </Box>
                 <Box  >
                     <Image objectFit="cover" h="600px" src={Image3} />
-                    {/* <p className="legend">Highlights from year two</p> */}
+
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image4} />
-                    {/* <p className="legend">Highlights from year three</p> */}
+
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image5} />
-                    {/* <p className="legend">Highlights from year four</p> */}
+
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image6} />
-                    {/* <p className="legend">Highlights from year five</p> */}
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image7} />
-                    {/* <p className="legend">Highlights from year five</p> */}
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image8} />
-                    {/* <p className="legend">Highlights from year five</p> */}
                 </Box>
                 <Box>
                     <Image objectFit="cover" h="600px" src={Image9} />
-                    {/* <p className="legend">Highlights from year five</p> */}
                 </Box>
             </Carousel>
         </Box>
