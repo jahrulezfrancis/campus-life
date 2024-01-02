@@ -14,19 +14,7 @@ export default function PhotoHighlightCard() {
     useEffect(() => {
         setBgImage(defImages[1])
     }, [])
-
-    // useEffect(() => {
-    //     const apiKey = "30256236-c46924012bafa491fbefb7733"
-    //     axios.get("https://pixabay.com/api/?key=" + apiKey).then((response) => {
-    //         console.log(response.data)
-    //         const apiImages = response.data.map((item) => item.url)
-    //         console.log(apiImages)
-    //         setImageArray(apiImages)
-    //         setBgImage(apiImages[2])
-    //     }).catch(function (e) {
-    //         console.log("An error occured", e)
-    //     })
-    // }, [])
+    
     return (
         <PreviewCardLayout bgImage={bgImage} cardLabel="Your campus highlights" children={
             <>
