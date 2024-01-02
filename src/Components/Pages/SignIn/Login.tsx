@@ -92,7 +92,6 @@ export default function Login() {
             .then(data => {
                 const csrfToken = data.csrf_token;
                 setToken(csrfToken)
-                console.log(csrfToken)
                 // Now you can use the csrfToken in your requests
             })
             .catch(error => console.error('Error fetching CSRF token:', error));
@@ -106,7 +105,6 @@ export default function Login() {
             .then(data => {
                 const csrfToken = data.csrf_token;
                 setToken(csrfToken)
-                console.log(csrfToken)
                 // Now you can use the csrfToken in your requests
             })
             .catch(error => console.error('Error fetching CSRF token:', error));
@@ -132,21 +130,22 @@ export default function Login() {
 
             localStorage.setItem('token', token);
 
-            console.log('Login successful', response.data);
-
             toast({
                 title: 'Login successful',
                 status: 'success',
                 duration: 3000,
+                position: "top",
             });
+
             redirect('/dashboard')
+
         } catch (error: unknown) {
             // Handle the error
             console.error('Login failed', error);
 
             toast({
                 title: 'Login Failed',
-                description: error instanceof Error && error.message === "Network Error" ? "Internal Server error" : error instanceof Error && error.message === "Request failed with status code 400" ? "Incorrect email or password, please try again" : "An error occured please try again" ,
+                description: error instanceof Error && error.message === "Network Error" ? "Internal Server error" : error instanceof Error && error.message === "Request failed with status code 400" ? "Incorrect email or password, please try again" : "An error occured please try again",
                 status: 'error',
                 duration: 3000,
             });
@@ -187,26 +186,6 @@ export default function Login() {
                             />
                             <FormErrorMessage>{errors.password}</FormErrorMessage>
                         </FormControl>
-                        {/* <FormControl isInvalid={!!errors.email}>
-                        <FormLabel>Email</FormLabel>
-                        <Input
-                            type="email"
-                            name="email"
-                            value={values.email}
-                            onChange={handleChange}
-                        />
-                        <FormErrorMessage>{errors.email}</FormErrorMessage>
-                    </FormControl>
-                    <FormControl isInvalid={!!errors.name}>
-                        <FormLabel>Name</FormLabel>
-                        <Input
-                            type="text"
-                            name="name"
-                            value={values.name}
-                            onChange={handleChange}
-                        />
-                        <FormErrorMessage>{errors.name}</FormErrorMessage>
-                    </FormControl> */}
                         <Button colorScheme="teal" isLoading={loading} type='submit'>
                             Login
                         </Button>
