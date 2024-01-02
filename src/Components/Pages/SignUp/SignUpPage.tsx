@@ -110,8 +110,6 @@ const Registration: React.FC = () => {
 
             localStorage.setItem('token', token);
 
-            console.log('Login successful', response.data);
-
             toast({
                 title: 'Registration successful',
                 status: 'success',
@@ -119,7 +117,6 @@ const Registration: React.FC = () => {
             });
         } catch (error: unknown) {
             console.error('Registration failed', error);
-            console.log("You just submitted" + values.reg_number + values.email)
 
             toast({
                 title: 'Registration failed',
