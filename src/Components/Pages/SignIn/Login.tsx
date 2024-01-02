@@ -146,7 +146,7 @@ export default function Login() {
 
             toast({
                 title: 'Login Failed',
-                description: error instanceof Error && error.message === "Network Error" && "Internal Server error",
+                description: error instanceof Error && error.message === "Network Error" ? "Internal Server error" : error instanceof Error && error.message === "Request failed with status code 400" ? "Incorrect email or password, please try again" : "An error occured please try again" ,
                 status: 'error',
                 duration: 3000,
             });
