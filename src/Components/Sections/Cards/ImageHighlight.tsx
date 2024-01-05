@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import PreviewCardLayout from "./CardLayout";
 
 export default function PhotoHighlightCard() {
-    // const [imageArray, setImageArray] = useState([])
     const [bgImage, setBgImage] = useState("")
     const defImages = [Student1, Student2, Student3]
 
