@@ -1,7 +1,6 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { yearlyData } from "./YearlyData";
 import PreviewCardLayout from "./CardLayout";
-import SocialMediaCard from "./SocialCardComp";
 import { Link } from "react-router-dom";
 
 export default function CardRenderers() {
@@ -20,7 +19,6 @@ export default function CardRenderers() {
                         } />
                     )
                 })}
-                <SocialMediaCard />
             </Flex>
         </Box>
     )
