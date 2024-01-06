@@ -1,9 +1,14 @@
-import { CgProfile } from "react-icons/cg"
-import { MdDashboard } from "react-icons/md";
-import { IoCloudUploadSharp } from "react-icons/io5";
+import { MdDashboard ,MdOutlineStarPurple500} from "react-icons/md";
+import FileIcon from "../../assets/folder-double-icon.svg"
+import FileReqIcon from "../../assets/folder-share-icon.svg"
+import ShareIcon from "../../assets/share-icon.svg"
+import DeleteIcon from "../../assets/delete-icon.svg"
 
 export const navItems = [
-    { id: 1, path: "dashboard", title: "Dashboard", icon: MdDashboard },
-    { id: 2, path: "profile", title: "Profile", icon: CgProfile },
-    { id: 3, path: "my-uploads", title: "My Uploads", icon: IoCloudUploadSharp },
+    { id: 1, path: "dashboard", title: "Home", icon: MdDashboard },
+    { id: 2, path: "file", title: "My Files", icon: FileIcon },
+    { id: 3, path: "#", title: "Starred", icon: MdOutlineStarPurple500 },
+    { id: 4, path: "#", title: "Files Requests", icon: FileReqIcon },
+    { id: 5, path: "#", title: "Shared", icon: ShareIcon },
+    { id: 6, path: "#", title: "Deleted", icon: DeleteIcon },
 ]
