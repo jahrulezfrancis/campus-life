@@ -2,7 +2,6 @@ import { Box } from '@chakra-ui/react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './Components/Pages/LandingPage/Homepage'
 import Dashboard from './Components/Pages/Dashboard/Dashboard'
-import NavBar from './Components/Navigation/NavBar'
 import ProfilePage from './Components/Pages/Profile/Profile'
 import UploadsPage from './Components/Pages/Uploads/Uploads'
 import Registration from './Components/Pages/SignUp/SignUpPage'
@@ -12,7 +11,6 @@ function App() {
 
   return (
     <Box>
-      <NavBar />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/dashboard' element={<Dashboard />} />
