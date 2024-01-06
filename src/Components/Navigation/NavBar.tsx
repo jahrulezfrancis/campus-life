@@ -1,5 +1,5 @@
 import { Box, Flex, Spacer, useMediaQuery, Heading } from "@chakra-ui/react";
-import SideBar from "./Sidebar";
+import SideBar from "./MobileSidebar";
 import NavItemsRenderer from "./NavItemsRenderer";
 import { NavLink } from "react-router-dom";
 
